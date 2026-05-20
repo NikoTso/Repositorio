@@ -1,0 +1,71 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String   @id @default(uuid())
+  email         String   @unique
+  passwordHash  String
+  name          String
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
+model Project {
+  id            String   @id @default(uuid())
+  title         String
+  slug          String   @unique
+  description   String?
+  repoUrl       String?
+  liveUrl       String?
+  thumbnailUrl  String?
+  featured      Boolean  @default(false)
+  status        String   @default("completed")
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  skills        ProjectSkill[]
+}
+
+model Skill {
+  id          String   @id @default(uuid())
+  name        String   @unique
+  category    String
+  level       Int
+
+  projects    ProjectSkill[]
+}
+
+model ProjectSkill {
+  projectId String
+  skillId   String
+
+  project Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  skill   Skill   @relation(fields: [skillId], references: [id], onDelete: Cascade)
+
+  @@id([projectId, skillId])
+}
+
+model Experience {
+  id          String   @id @default(uuid())
+  company     String
+  role        String
+  description String?
+  startDate   DateTime
+  endDate     DateTime?
+  current     Boolean  @default(false)
+}
+
+model Certification {
+  id        String   @id @default(uuid())
+  title     String
+  issuer    String?
+  url       String?
+  issuedAt  DateTime?
+}
