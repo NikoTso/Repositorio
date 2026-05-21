@@ -4,8 +4,9 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
 }
 
 model User {
@@ -18,30 +19,30 @@ model User {
 }
 
 model Project {
-  id            String   @id @default(uuid())
-  title         String
-  slug          String   @unique
-  description   String?
-  repoUrl       String?
-  liveUrl       String?
-  thumbnailUrl  String?
-  imageUrl    String?
-  githubUrl   String?
-  featured      Boolean  @default(false)
-  status        String   @default("completed")
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
+  id           String   @id @default(uuid())
+  title        String
+  slug         String   @unique
+  description  String?
+  repoUrl      String?
+  liveUrl      String?
+  thumbnailUrl String?
+  imageUrl     String?
+  githubUrl    String?
+  featured     Boolean  @default(false)
+  status       String   @default("completed")
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
 
-  skills        ProjectSkill[]
+  skills ProjectSkill[]
 }
 
 model Skill {
-  id          String   @id @default(uuid())
-  name        String   @unique
-  category    String
-  level       Int
+  id       String @id @default(uuid())
+  name     String @unique
+  category String
+  level    Int
 
-  projects    ProjectSkill[]
+  projects ProjectSkill[]
 }
 
 model ProjectSkill {
@@ -55,19 +56,19 @@ model ProjectSkill {
 }
 
 model Experience {
-  id          String   @id @default(uuid())
+  id          String    @id @default(uuid())
   company     String
   role        String
   description String?
   startDate   DateTime
   endDate     DateTime?
-  current     Boolean  @default(false)
+  current     Boolean   @default(false)
 }
 
 model Certification {
-  id        String   @id @default(uuid())
-  title     String
-  issuer    String?
-  url       String?
-  issuedAt  DateTime?
+  id       String    @id @default(uuid())
+  title    String
+  issuer   String?
+  url      String?
+  issuedAt DateTime?
 }
