@@ -2,9 +2,21 @@ import { Request, Response } from "express";
 import { prisma } from "../lib/prisma";
 
 export class ProjectController {
-    async getAll(req: Request, res: Response){
-        const projects = await prisma.project.findMany();
-        res.json(projects);    
+    async getAll(req: Request, res: Response) {
+        try {
+        const projects = await prisma.project.findMany({
+            include: {
+            skills: {
+                include: {
+                skill: true,
+                },
+            },
+            },
+        });
+        return res.json(projects);
+        } catch (error) {
+        return res.status(500).json({ error: "Erro ao buscar projetos." });
+        }
     }
 
     async create(req: Request, res: Response) {

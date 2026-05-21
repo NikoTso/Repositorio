@@ -25,6 +25,8 @@ model Project {
   repoUrl       String?
   liveUrl       String?
   thumbnailUrl  String?
+  imageUrl    String?
+  githubUrl   String?
   featured      Boolean  @default(false)
   status        String   @default("completed")
   createdAt     DateTime @default(now())

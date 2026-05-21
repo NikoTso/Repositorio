@@ -23,6 +23,7 @@ const verificarToken = (req: any, res: any, next: any) => {
 };
 
 router.get("/", projectController.getAll);
+
 router.post("/", verificarToken, projectController.create);
 
 export default router;
