@@ -33,7 +33,7 @@ export function Hero() {
         </a>
 
         <a
-          href="https://linkedin.com/gabrielolimed/"
+          href="https://www.linkedin.com/in/gabrielolimed/"
           target="_blank"
           className="bg-white text-black px-6 py-3 rounded-2xl hover:opacity-80 transition"
         >
