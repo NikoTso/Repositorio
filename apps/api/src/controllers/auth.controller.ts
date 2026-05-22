@@ -1,14 +1,14 @@
-import { Request, Response } from "express";
+import {Request, Response} from "express";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
-import { prisma } from "../lib/prisma";
+import {prisma} from "../lib/prisma";
 
 export class AuthController {
     async register(req: Request, res: Response) {
         try {
             const { name, email, password } = req.body;
 
-            const userExists = await prisma.user.findUnique({ where: { email }});
+            const userExists = await prisma.user.findUnique({where: {email}});
             if (userExists) {
                 return res.status(400).json({ error: "Usuario já existe"});
             }

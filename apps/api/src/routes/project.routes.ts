@@ -24,6 +24,8 @@ const verificarToken = (req: any, res: any, next: any) => {
 
 router.get("/", projectController.getAll);
 
+router.delete("/:id", verificarToken, projectController.delete);
+
 router.post("/", verificarToken, projectController.create);
 
 export default router;
