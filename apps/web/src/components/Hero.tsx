@@ -25,7 +25,7 @@ export function Hero() {
       <div className="flex gap-4 mt-10 flex-wrap">
 
         <a
-          href="https://github.com/"
+          href="https://github.com/NikoTso/"
           target="_blank"
           className="border border-zinc-700 px-6 py-3 rounded-2xl hover:bg-zinc-900 transition"
         >
@@ -33,7 +33,7 @@ export function Hero() {
         </a>
 
         <a
-          href="https://linkedin.com/"
+          href="https://linkedin.com/gabrielolimed/"
           target="_blank"
           className="bg-white text-black px-6 py-3 rounded-2xl hover:opacity-80 transition"
         >

@@ -19,7 +19,7 @@ export function Projects() {
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:3000";
+        const apiUrl = (import.meta as any).env.VITE_API_URL || "http://localhost:3000";
 
         fetch(`${apiUrl}/projects`)
         .then((res) => {
