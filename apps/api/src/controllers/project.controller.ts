@@ -21,21 +21,31 @@ export class ProjectController {
 
     async create(req: Request, res: Response) {
         try {
-            const { title, slug, description, repoUrl} = req.body;
+            const { title, slug, description, repoUrl, liveUrl, featured, skillIds } = req.body;
             const project = await prisma.project.create({
                 data: {
                     title,
                     slug,
                     description,
                     repoUrl,
+                    liveUrl,
+                    featured: featured ?? false,
+                    skills: {
+                        create: skillIds?.map((skillId: string) => ({
+                            skill: { connect: { id: skillId } }
+                        })) ?? []
+                    }
                 },
+                include: {
+                    skills: {
+                        include: { skill: true }
+                    }
+                }
             });
 
-            res.status(201).json(project);
+        return res.status(201).json(project);
         } catch (error) {
-            res.status(400).json({
-                error: "Project could not be created",
-            })
+            return res.status(400).json({ error: "Project could not be created" });
         }
     }
 }
