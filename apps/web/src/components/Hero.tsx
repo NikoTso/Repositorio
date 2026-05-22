@@ -83,7 +83,7 @@ export function Hero({visible}: HeroProps) {
         >
           Gabriel
           <br />
-          <span style={{color: "transparent", WebkitTextStroke: "1.5px #1e1e1e" }}>Oliveira</span>
+          <span style={{color: "transparent", WebkitTextStroke: "1.5px #666666" }}>Oliveira</span>
         </h1>
 
         <div style={{height: "26px", overflow: "hidden", marginBottom: "32px" }}>

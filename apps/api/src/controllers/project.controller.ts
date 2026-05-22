@@ -45,7 +45,7 @@ export class ProjectController {
 
         return res.status(201).json(project);
         } catch (error) {
-            return res.status(400).json({ error: "Project could not be created" });
+            return res.status(400).json({error: "Project could not be created"});
         }
     }
     async delete(req: Request, res: Response) {
